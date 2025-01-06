@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-top: 50px;
+        }
+        .result {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 80%;
+            max-width: 600px;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #007BFF;
+            margin-top: 20px;
+            display: inline-block;
+            border: 2px solid #007BFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h2>Stroke Prediction Result</h2>
+
+    <div class="result">
+        <!-- Display Prediction -->
+        <p><strong>Prediction:</strong> {{ result.details }}</p>
+        <p><strong>Prediction Value:</strong> {{ result.prediction }}</p>
+    </div>
+
+    <!-- Link to go back to the home page -->
+    <a href="/">Go Back to Prediction Form</a>
+</body>
+</html>

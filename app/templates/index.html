@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Prediction Input Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .form-container {
+            width: 48%;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h1 {
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .chatbot-container {
+            width: 48%;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .chatbox {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .chatbox div {
+            margin-bottom: 10px;
+        }
+        .user-message, .bot-message {
+            padding: 8px;
+            border-radius: 5px;
+            max-width: 80%;
+            margin-bottom: 5px;
+        }
+        .user-message {
+            background-color: #d1e7fd;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background-color: #e1ffe1;
+            align-self: flex-start;
+        }
+        .input-area {
+            display: flex;
+            justify-content: space-between;
+        }
+        .chat-input {
+            width: 80%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .chat-send {
+            width: 18%;
+            padding: 8px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .chat-send:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Stroke Prediction and Health Advice</h2>
+    </header>
+
+    <div class="container">
+        <!-- Form Container -->
+        <div class="form-container">
+            <h1>Stroke Prediction Input Form</h1>
+            <form action="/predict" method="POST">
+                <label for="id">ID:</label>
+                <input type="number" id="id" name="id" required><br><br>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select><br><br>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" step="0.1" required><br><br>
+
+                <label for="hypertension">Hypertension:</label>
+                <select id="hypertension" name="hypertension" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select><br><br>
+
+                <label for="heart_disease">Heart Disease:</label>
+                <select id="heart_disease" name="heart_disease" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select><br><br>
+
+                <label for="ever_married">Ever Married:</label>
+                <select id="ever_married" name="ever_married" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br><br>
+
+                <label for="work_type">Work Type:</label>
+                <select id="work_type" name="work_type" required>
+                    <option value="Private">Private</option>
+                    <option value="Self-employed">Self-employed</option>
+                    <option value="Govt_job">Govt Job</option>
+                    <option value="children">Children</option>
+                    <option value="Never_worked">Never Worked</option>
+                </select><br><br>
+
+                <label for="Residence_type">Residence Type:</label>
+                <select id="Residence_type" name="Residence_type" required>
+                    <option value="Urban">Urban</option>
+                    <option value="Rural">Rural</option>
+                </select><br><br>
+
+                <label for="avg_glucose_level">Average Glucose Level:</label>
+                <input type="number" id="avg_glucose_level" name="avg_glucose_level" step="0.01" required><br><br>
+
+                <label for="bmi">BMI:</label>
+                <input type="number" id="bmi" name="bmi" step="0.1"><br><br>
+
+                <label for="smoking_status">Smoking Status:</label>
+                <select id="smoking_status" name="smoking_status" required>
+                    <option value="formerly smoked">Formerly Smoked</option>
+                    <option value="never smoked">Never Smoked</option>
+                    <option value="smokes">Smokes</option>
+                    <option value="Unknown">Unknown</option>
+                </select><br><br>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- Chatbot Container -->
+        <div class="chatbot-container">
+            <h2>Stroke Prevention Tips Chatbot</h2>
+            <div class="chatbox" id="chatbox">
+                <div class="bot-message">Hello! I'm here to help you with stroke prevention tips and healthy habits. How can I assist you today?</div>
+            </div>
+            <div class="input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Ask about stroke prevention...">
+                <button class="chat-send" id="sendBtn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Example function to simulate a ChatGPT response (can be replaced with actual integration)
+       // Get elements
+const chatInput = document.getElementById("chatInput");
+const sendBtn = document.getElementById("sendBtn");
+const chatbox = document.getElementById("chatbox");
+
+sendBtn.addEventListener("click", function() {
+    const userMessage = chatInput.value;
+    if (userMessage.trim() !== "") {
+        // Display user message
+        const userDiv = document.createElement("div");
+        userDiv.classList.add("user-message");
+        userDiv.textContent = userMessage;
+        chatbox.appendChild(userDiv);
+
+        // Scroll to the latest message
+        chatbox.scrollTop = chatbox.scrollHeight;
+
+        // Clear input field
+        chatInput.value = "";
+
+        // Send user message to Flask backend (chatbot route)
+        fetch('/chatbot', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message: userMessage })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const botMessage = document.createElement("div");
+            botMessage.classList.add("bot-message");
+            botMessage.textContent = data.response;
+            chatbox.appendChild(botMessage);
+
+            // Scroll to the latest message
+            chatbox.scrollTop = chatbox.scrollHeight;
+        });
+    }
+});
+
+      
+    </script>
+</body>
+</html>
